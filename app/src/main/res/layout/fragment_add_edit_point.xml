@@ -12,9 +12,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilName"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/HuntTrail.TextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
             android:hint="Point name">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -26,10 +27,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilAddress"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/HuntTrail.TextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:hint="Address"
             app:helperText="e.g. 160 Kendal Ave, Toronto">
 
@@ -40,12 +40,18 @@
                 android:inputType="textPostalAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnValidate"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check address" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilTask"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/HuntTrail.TextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:hint="Task instructions">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -58,11 +64,10 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            style="@style/HuntTrail.SectionLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Tags"
-            android:textStyle="bold" />
+            android:text="Tags" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroupTags"
@@ -77,9 +82,10 @@
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                style="@style/HuntTrail.TextField"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
                 android:layout_weight="1"
                 android:hint="New tag (e.g. easy)">
 
@@ -101,20 +107,17 @@
         </LinearLayout>
 
         <TextView
+            style="@style/HuntTrail.SectionLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Rating"
-            android:textStyle="bold" />
+            android:text="Rating" />
 
         <RatingBar
             android:id="@+id/ratingBar"
+            style="@style/HuntTrail.RatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:numStars="5"
-            android:progressTint="@color/ht_star"
-            android:stepSize="1" />
+            android:layout_marginTop="4dp" />
 
         <LinearLayout
             android:layout_width="match_parent"

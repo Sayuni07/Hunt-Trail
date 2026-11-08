@@ -12,18 +12,16 @@
 
         <TextView
             android:id="@+id/tvName"
+            style="@style/HuntTrail.ScreenTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/ht_green_dark"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tvAddress"
+            style="@style/HuntTrail.Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="15sp" />
+            android:layout_marginTop="4dp" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroupTags"
@@ -46,14 +44,15 @@
                 android:padding="16dp">
 
                 <TextView
+                    style="@style/HuntTrail.SectionLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Task"
-                    android:textColor="@color/ht_green_dark"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="0dp"
+                    android:text="Task" />
 
                 <TextView
                     android:id="@+id/tvTask"
+                    style="@style/HuntTrail.Body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -62,20 +61,17 @@
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
+            style="@style/HuntTrail.SectionLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Your rating"
-            android:textStyle="bold" />
+            android:text="Your rating" />
 
         <RatingBar
             android:id="@+id/ratingBar"
+            style="@style/HuntTrail.RatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:numStars="5"
-            android:progressTint="@color/ht_star"
-            android:stepSize="1" />
+            android:layout_marginTop="4dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -130,8 +126,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:text="Delete"
-                android:textColor="#C62828"
-                app:strokeColor="#C62828" />
+                android:textColor="@color/ht_danger"
+                app:strokeColor="@color/ht_danger" />
         </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

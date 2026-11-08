@@ -12,11 +12,11 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilSearch"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/HuntTrail.TextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:hint="Search by name or tag"
             app:endIconMode="clear_text">
 
@@ -31,9 +31,11 @@
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             android:scrollbars="none">
 
+            <!-- "All" is fixed; one chip per tag is added in code -->
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroupTags"
                 android:layout_width="wrap_content"
@@ -49,48 +51,37 @@
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="All" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.Material3.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="easy" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.Material3.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="hard" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.Material3.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="photo" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.Material3.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="info" />
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPoints"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:clipToPadding="false"
-            android:paddingBottom="88dp" />
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPoints"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="88dp" />
+
+            <TextView
+                android:id="@+id/tvEmpty"
+                style="@style/HuntTrail.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="No points found"
+                android:visibility="gone" />
+        </FrameLayout>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
+        style="@style/HuntTrail.Fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
         android:contentDescription="Add point"
         android:src="@drawable/ic_add" />
 </FrameLayout>

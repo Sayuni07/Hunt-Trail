@@ -7,15 +7,17 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ca.gbc.comp3074.shaikh.hunttrail.R
+import ca.gbc.comp3074.shaikh.hunttrail.data.PointWithTags
+import ca.gbc.comp3074.shaikh.hunttrail.data.tagNames
 
-// Connects the list of points to the RecyclerView (one card per point)
+// Connects the list of points (from Room) to the RecyclerView - one card per point
 class PointAdapter(
-    private val onClick: (PointUi) -> Unit
+    private val onClick: (PointWithTags) -> Unit
 ) : RecyclerView.Adapter<PointAdapter.PointViewHolder>() {
 
-    private var items: List<PointUi> = emptyList()
+    private var items: List<PointWithTags> = emptyList()
 
-    fun submit(list: List<PointUi>) {
+    fun submit(list: List<PointWithTags>) {
         items = list
         notifyDataSetChanged()
     }
@@ -34,12 +36,13 @@ class PointAdapter(
     }
 
     override fun onBindViewHolder(holder: PointViewHolder, position: Int) {
-        val point = items[position]
-        holder.name.text = point.name
-        holder.address.text = point.address
-        holder.tags.text = point.tags.joinToString("   ") { "#$it" }
-        holder.rating.rating = point.rating.toFloat()
-        holder.itemView.setOnClickListener { onClick(point) }
+        val item = items[position]
+        holder.name.text = item.point.name
+        holder.address.text = item.point.address
+        holder.tags.text = item.tagNames.joinToString("   ") { "#$it" }
+        holder.tags.visibility = if (item.tags.isEmpty()) View.GONE else View.VISIBLE
+        holder.rating.rating = item.point.rating.toFloat()
+        holder.itemView.setOnClickListener { onClick(item) }
     }
 
     override fun getItemCount(): Int = items.size

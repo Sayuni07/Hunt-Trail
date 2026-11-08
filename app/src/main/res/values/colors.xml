@@ -7,4 +7,7 @@
     <color name="ht_mint">#CDEDE2</color>
     <color name="ht_star">#F5B400</color>
     <color name="ht_grey_bg">#F4F6F5</color>
+    <color name="ht_text">#2B302E</color>
+    <color name="ht_text_secondary">#5F6663</color>
+    <color name="ht_danger">#C62828</color>
 </resources>

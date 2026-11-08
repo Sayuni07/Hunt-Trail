@@ -8,22 +8,23 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ca.gbc.comp3074.shaikh.hunttrail.R
+import ca.gbc.comp3074.shaikh.hunttrail.data.HuntRepository
+import ca.gbc.comp3074.shaikh.hunttrail.data.TeamContact
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.launch
 
+// Team Contacts: add, view, edit, remove and contact members (FR10)
 class TeamContactsFragment : Fragment(R.layout.fragment_team_contacts) {
 
-    // Sample data for the prototype - saved in Room in the database stage
-    private val contacts = mutableListOf(
-        ContactUi("Daviti Sidana", "416-555-0101", "daviti@example.com"),
-        ContactUi("Tanzeem Shaikh", "416-555-0102", "tanzeem@example.com"),
-        ContactUi("Sayuni Wimaladharma", "416-555-0103", "sayuni@example.com"),
-        ContactUi("Noela Bilonda Kabundi", "416-555-0104", "noela@example.com")
-    )
+    private val repo by lazy { HuntRepository.get(requireContext()) }
 
     private lateinit var adapter: ContactAdapter
     private lateinit var tvEmpty: TextView
@@ -56,16 +57,19 @@ class TeamContactsFragment : Fragment(R.layout.fragment_team_contacts) {
             showContactDialog(null)
         }
 
-        refresh()
-    }
-
-    private fun refresh() {
-        adapter.submit(contacts.toList())
-        tvEmpty.visibility = if (contacts.isEmpty()) View.VISIBLE else View.GONE
+        // Watch the contacts table - the list updates by itself
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                repo.contacts.collect { list ->
+                    adapter.submit(list)
+                    tvEmpty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
+                }
+            }
+        }
     }
 
     // existing == null -> Add, otherwise Edit (with a Delete option)
-    private fun showContactDialog(existing: ContactUi?) {
+    private fun showContactDialog(existing: TeamContact?) {
         val dialogView = layoutInflater.inflate(R.layout.dialog_contact, null)
         val etName = dialogView.findViewById<TextInputEditText>(R.id.etContactName)
         val etPhone = dialogView.findViewById<TextInputEditText>(R.id.etContactPhone)
@@ -87,23 +91,18 @@ class TeamContactsFragment : Fragment(R.layout.fragment_team_contacts) {
                     Toast.makeText(requireContext(), "Name is required", Toast.LENGTH_SHORT).show()
                     return@setPositiveButton
                 }
-                val updated = ContactUi(
-                    name,
-                    etPhone.text.toString().trim(),
-                    etEmail.text.toString().trim()
+                val contact = TeamContact(
+                    id = existing?.id ?: 0,      // 0 = insert, otherwise update
+                    name = name,
+                    phone = etPhone.text.toString().trim(),
+                    email = etEmail.text.toString().trim()
                 )
-                if (existing == null) {
-                    contacts.add(updated)
-                } else {
-                    contacts[contacts.indexOf(existing)] = updated
-                }
-                refresh()
+                viewLifecycleOwner.lifecycleScope.launch { repo.saveContact(contact) }
             }
 
         if (existing != null) {
             builder.setNeutralButton("Delete") { _, _ ->
-                contacts.remove(existing)
-                refresh()
+                viewLifecycleOwner.lifecycleScope.launch { repo.deleteContact(existing) }
             }
         }
         builder.show()

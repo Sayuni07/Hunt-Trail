@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shared styles used across all HuntTrail screens -->
+<resources>
+
+    <!-- ===== Text ===== -->
+    <style name="HuntTrail" />
+
+    <style name="HuntTrail.ScreenTitle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/ht_green_dark</item>
+    </style>
+
+    <style name="HuntTrail.CardTitle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/ht_green_dark</item>
+    </style>
+
+    <style name="HuntTrail.SectionLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/ht_green_dark</item>
+    </style>
+
+    <style name="HuntTrail.Body">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/ht_text</item>
+    </style>
+
+    <style name="HuntTrail.Secondary">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/ht_text_secondary</item>
+    </style>
+
+    <style name="HuntTrail.TagText">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/ht_green</item>
+    </style>
+
+    <!-- ===== Cards ===== -->
+    <style name="HuntTrail.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+
+    <!-- ===== Inputs ===== -->
+    <style name="HuntTrail.TextField" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">12dp</item>
+    </style>
+
+    <!-- ===== Rating bars ===== -->
+    <style name="HuntTrail.RatingBar" parent="Widget.AppCompat.RatingBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">1</item>
+        <item name="android:progressTint">@color/ht_star</item>
+    </style>
+
+    <style name="HuntTrail.RatingBar.Small" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">1</item>
+        <item name="android:isIndicator">true</item>
+        <item name="android:progressTint">@color/ht_star</item>
+    </style>
+
+    <!-- ===== Floating "+" button ===== -->
+    <style name="HuntTrail.Fab" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom|end</item>
+        <item name="android:layout_margin">16dp</item>
+    </style>
+</resources>

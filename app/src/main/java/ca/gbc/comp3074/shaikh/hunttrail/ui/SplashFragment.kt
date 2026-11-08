@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import ca.gbc.comp3074.shaikh.hunttrail.R
+import ca.gbc.comp3074.shaikh.hunttrail.data.HuntRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -13,9 +14,10 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Wait 2 seconds, then open the Hunt List
         viewLifecycleOwner.lifecycleScope.launch {
-            delay(2000)
+            // First launch only: put sample points and contacts in the database
+            HuntRepository.get(requireContext()).seedIfEmpty()
+            delay(1500)
             findNavController().navigate(R.id.action_splash_to_huntList)
         }
     }

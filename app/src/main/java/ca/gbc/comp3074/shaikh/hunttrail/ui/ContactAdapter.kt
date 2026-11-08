@@ -6,18 +6,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ca.gbc.comp3074.shaikh.hunttrail.R
+import ca.gbc.comp3074.shaikh.hunttrail.data.TeamContact
 import com.google.android.material.button.MaterialButton
 
 class ContactAdapter(
-    private val onCall: (ContactUi) -> Unit,
-    private val onSms: (ContactUi) -> Unit,
-    private val onEmail: (ContactUi) -> Unit,
-    private val onEdit: (ContactUi) -> Unit
+    private val onCall: (TeamContact) -> Unit,
+    private val onSms: (TeamContact) -> Unit,
+    private val onEmail: (TeamContact) -> Unit,
+    private val onEdit: (TeamContact) -> Unit
 ) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
-    private var items: List<ContactUi> = emptyList()
+    private var items: List<TeamContact> = emptyList()
 
-    fun submit(list: List<ContactUi>) {
+    fun submit(list: List<TeamContact>) {
         items = list
         notifyDataSetChanged()
     }
@@ -41,8 +42,12 @@ class ContactAdapter(
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val c = items[position]
         holder.name.text = c.name
-        holder.phone.text = c.phone
-        holder.email.text = c.email
+        holder.phone.text = c.phone.ifBlank { "No phone" }
+        holder.email.text = c.email.ifBlank { "No email" }
+        // Buttons only work when the contact has that info
+        holder.btnCall.isEnabled = c.phone.isNotBlank()
+        holder.btnSms.isEnabled = c.phone.isNotBlank()
+        holder.btnEmail.isEnabled = c.email.isNotBlank()
         holder.btnCall.setOnClickListener { onCall(c) }
         holder.btnSms.setOnClickListener { onSms(c) }
         holder.btnEmail.setOnClickListener { onEmail(c) }
