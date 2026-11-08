@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="ca.gbc.comp3074.shaikh.hunttrail.ui.SplashFragment"
+        android:label="HuntTrail">
+        <!-- popUpTo removes Splash so Back doesn't return to it -->
+        <action
+            android:id="@+id/action_splash_to_huntList"
+            app:destination="@id/huntListFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/huntListFragment"
+        android:name="ca.gbc.comp3074.shaikh.hunttrail.ui.HuntListFragment"
+        android:label="HuntTrail">
+        <action
+            android:id="@+id/action_huntList_to_details"
+            app:destination="@id/pointDetailsFragment" />
+        <action
+            android:id="@+id/action_huntList_to_addEdit"
+            app:destination="@id/addEditPointFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pointDetailsFragment"
+        android:name="ca.gbc.comp3074.shaikh.hunttrail.ui.PointDetailsFragment"
+        android:label="Point Details">
+        <action
+            android:id="@+id/action_details_to_addEdit"
+            app:destination="@id/addEditPointFragment" />
+        <action
+            android:id="@+id/action_details_to_map"
+            app:destination="@id/mapFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addEditPointFragment"
+        android:name="ca.gbc.comp3074.shaikh.hunttrail.ui.AddEditPointFragment"
+        android:label="Add / Edit Point" />
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="ca.gbc.comp3074.shaikh.hunttrail.ui.MapFragment"
+        android:label="Map" />
+
+    <fragment
+        android:id="@+id/teamContactsFragment"
+        android:name="ca.gbc.comp3074.shaikh.hunttrail.ui.TeamContactsFragment"
+        android:label="Team Contacts" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="ca.gbc.comp3074.shaikh.hunttrail.ui.AboutFragment"
+        android:label="About" />
+</navigation>

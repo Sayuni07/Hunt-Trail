@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">HuntTrail</string>
+    <string name="tagline">Create. Explore. Discover.</string>
+    <string name="nav_hunt">Hunt</string>
+    <string name="nav_map">Map</string>
+    <string name="nav_team">Team</string>
+    <string name="nav_about">About</string>
 </resources>

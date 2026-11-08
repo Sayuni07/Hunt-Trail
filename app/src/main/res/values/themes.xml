@@ -1,8 +1,12 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.HuntTrail" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<resources>
+    <style name="Base.Theme.HuntTrail" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/ht_green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/ht_mint</item>
+        <item name="colorOnPrimaryContainer">@color/ht_green_dark</item>
+        <item name="colorSecondary">@color/ht_green</item>
+        <item name="colorSecondaryContainer">@color/ht_mint</item>
+        <item name="android:statusBarColor">@color/ht_green_dark</item>
     </style>
 
     <style name="Theme.HuntTrail" parent="Base.Theme.HuntTrail" />
