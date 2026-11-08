@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="COMP3074 Mobile Application Development I\nGeorge Brown College"
+            android:text="COMP3074 Mobile Application Development I\nGeorge Brown Polytechnic"
             android:textSize="12sp" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
